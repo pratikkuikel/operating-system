@@ -1,0 +1,1545 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Operating Systems for Class 9</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #f0f2f5;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .slideshow-container {
+            position: relative;
+            margin: 20px auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .slide {
+            display: none;
+            padding: 40px;
+            height: 100%;
+            animation: fadeEffect 1s;
+        }
+
+        @keyframes fadeEffect {
+            from {
+                opacity: 0
+            }
+
+            to {
+                opacity: 1
+            }
+        }
+
+        .slide-content {
+            height: 100%;
+            overflow-y: auto;
+            padding-bottom: 60px;
+        }
+
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 2em;
+            text-align: center;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+
+        h2 {
+            color: #34495e;
+            margin: 20px 0 15px 0;
+            font-size: 1.5em;
+        }
+
+        h3 {
+            color: #2980b9;
+            margin: 15px 0 10px 0;
+            font-size: 1.2em;
+        }
+
+        .bullet-points {
+            margin-left: 25px;
+            margin-bottom: 15px;
+        }
+
+        .bullet-points li {
+            margin-bottom: 12px;
+        }
+
+        .sub-points {
+            margin-left: 20px;
+            margin-top: 8px;
+        }
+
+        .navigation {
+            text-align: center;
+            padding: 15px;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            border-top: 1px solid #eee;
+        }
+
+        .nav-btn {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 0 5px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+            font-weight: bold;
+        }
+
+        .nav-btn:hover {
+            background: #2980b9;
+        }
+
+        .progress-dots {
+            margin-top: 10px;
+        }
+
+        .dot {
+            height: 10px;
+            width: 10px;
+            margin: 0 5px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            cursor: pointer;
+        }
+
+        .active-dot {
+            background-color: #3498db;
+        }
+
+        .example-box {
+            background: #f8f9fa;
+            border-left: 4px solid #3498db;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 5px 5px 0;
+        }
+
+        .note-box {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 5px 5px 0;
+        }
+
+        .command-box {
+            background: #1e1e1e;
+            color: #fff;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+            font-family: 'Consolas', monospace;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .grid-item {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 5px;
+            border: 1px solid #dee2e6;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            border: 1px solid #dee2e6;
+            padding: 12px;
+            text-align: left;
+        }
+
+        .comparison-table th {
+            background: #e9ecef;
+            font-weight: bold;
+        }
+
+        .comparison-table tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        @media (max-width: 768px) {
+            .slideshow-container {
+                margin: 10px;
+                height: 600px;
+            }
+
+            .grid-container {
+                grid-template-columns: 1fr;
+            }
+
+            .slide {
+                padding: 20px;
+            }
+        }
+
+        /* Additional styles for new content */
+        .timeline {
+            position: relative;
+            max-width: 1200px;
+            margin: 20px auto;
+        }
+
+        .timeline-item {
+            padding: 15px;
+            border-left: 2px solid #3498db;
+            margin-left: 20px;
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -8px;
+            top: 0;
+            width: 14px;
+            height: 14px;
+            background: #3498db;
+            border-radius: 50%;
+        }
+
+        .code-example {
+            background: #1e1e1e;
+            color: #fff;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: 'Consolas', monospace;
+            margin: 10px 0;
+            white-space: pre-wrap;
+        }
+
+        .practical-example {
+            background: #e8f4f8;
+            border-left: 4px solid #2ecc71;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 5px 5px 0;
+        }
+
+        .warning-box {
+            background: #fee;
+            border-left: 4px solid #e74c3c;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 5px 5px 0;
+        }
+
+        .interactive-demo {
+            border: 2px solid #3498db;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 5px;
+            background: #f8f9fa;
+        }
+
+        .key-concept {
+            background: #e8f8f5;
+            border: 1px solid #2ecc71;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="slideshow-container">
+        <!-- Slide 1: Introduction and History -->
+        <div class="slide">
+            <div class="slide-content">
+                <h1>Understanding Operating Systems: A Comprehensive Guide</h1>
+
+                <div class="timeline">
+                    <h2>Historical Evolution of Operating Systems</h2>
+                    <div class="timeline-item">
+                        <h3>1940s - First Generation</h3>
+                        <ul class="bullet-points">
+                            <li>No operating system</li>
+                            <li>Manual operation through plugboards</li>
+                            <li>One program at a time</li>
+                        </ul>
+                    </div>
+                    <div class="timeline-item">
+                        <h3>1950s - Second Generation</h3>
+                        <ul class="bullet-points">
+                            <li>Batch processing systems</li>
+                            <li>Introduction of punch cards</li>
+                            <li>Simple job scheduling</li>
+                        </ul>
+                    </div>
+                    <div class="timeline-item">
+                        <h3>1960s - Third Generation</h3>
+                        <ul class="bullet-points">
+                            <li>Multiprogramming</li>
+                            <li>Time-sharing systems</li>
+                            <li>UNIX development begins</li>
+                        </ul>
+                    </div>
+                    <div class="timeline-item">
+                        <h3>1970s - 1990s</h3>
+                        <ul class="bullet-points">
+                            <li>Personal computers emerge</li>
+                            <li>GUI-based systems</li>
+                            <li>Network operating systems</li>
+                        </ul>
+                    </div>
+                    <div class="timeline-item">
+                        <h3>2000s - Present</h3>
+                        <ul class="bullet-points">
+                            <li>Mobile operating systems</li>
+                            <li>Cloud computing</li>
+                            <li>IoT operating systems</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h2>What is an Operating System?</h2>
+                <div class="key-concept">
+                    <h3>Core Definition:</h3>
+                    <p>An operating system is a specialized software that:</p>
+                    <ul class="bullet-points">
+                        <li>Acts as an intermediary between hardware and user</li>
+                        <li>Manages computer resources</li>
+                        <li>Provides services to applications</li>
+                        <li>Ensures system security and stability</li>
+                    </ul>
+                </div>
+
+                <div class="practical-example">
+                    <h3>Real-World Analogy:</h3>
+                    <p>Think of an operating system as a library manager who:</p>
+                    <ul class="bullet-points">
+                        <li>Organizes books (files) in shelves (storage)</li>
+                        <li>Manages reading rooms (memory)</li>
+                        <li>Handles book requests (process management)</li>
+                        <li>Maintains library cards (user access)</li>
+                    </ul>
+                </div>
+
+                <h2>Types of Operating Systems Based on Processing</h2>
+                <div class="grid-container">
+                    <div class="grid-item">
+                        <h3>Batch Processing</h3>
+                        <ul class="bullet-points">
+                            <li>Similar jobs grouped together</li>
+                            <li>Minimal user interaction</li>
+                            <li>Example: Payroll processing</li>
+                            <li>High throughput for similar tasks</li>
+                        </ul>
+                    </div>
+                    <div class="grid-item">
+                        <h3>Multi-programming</h3>
+                        <ul class="bullet-points">
+                            <li>Multiple programs in memory</li>
+                            <li>CPU always busy</li>
+                            <li>Better resource utilization</li>
+                            <li>Example: Modern PCs</li>
+                        </ul>
+                    </div>
+                    <div class="grid-item">
+                        <h3>Time-sharing</h3>
+                        <ul class="bullet-points">
+                            <li>Multiple users share resources</li>
+                            <li>Quick response time</li>
+                            <li>Interactive computing</li>
+                            <li>Example: Cloud servers</li>
+                        </ul>
+                    </div>
+                    <div class="grid-item">
+                        <h3>Real-time</h3>
+                        <ul class="bullet-points">
+                            <li>Immediate response</li>
+                            <li>Time-critical operations</li>
+                            <li>Example: Air traffic control</li>
+                            <li>Strict timing requirements</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="warning-box">
+                    <h3>Common Misconceptions:</h3>
+                    <ul class="bullet-points">
+                        <li>OS is not the same as BIOS</li>
+                        <li>OS is not just a user interface</li>
+                        <li>OS is not application software</li>
+                        <li>More features don't always mean better performance</li>
+                    </ul>
+                </div>
+
+                <div class="note-box">
+                    <h3>Important Terms to Remember:</h3>
+                    <ul class="bullet-points">
+                        <li>Kernel: Core of the operating system</li>
+                        <li>Shell: User interface to the kernel</li>
+                        <li>Process: Program in execution</li>
+                        <li>Thread: Lightweight unit of processing</li>
+                        <li>File System: Method of organizing data</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 2: Operating System Architecture -->
+        <div class="slide">
+            <div class="slide-content">
+                <h1>Operating System Architecture and Components</h1>
+
+                <h2>Layered Architecture</h2>
+                <div class="grid-container">
+                    <div class="grid-item">
+                        <h3>User Layer</h3>
+                        <ul class="bullet-points">
+                            <li>Application Programs</li>
+                            <li>User Interface</li>
+                            <li>Command Interpreters</li>
+                        </ul>
+                    </div>
+                    <div class="grid-item">
+                        <h3>System Call Interface</h3>
+                        <ul class="bullet-points">
+                            <li>API for applications</li>
+                            <li>Service access points</li>
+                            <li>Protection boundary</li>
+                        </ul>
+                    </div>
+                    <div class="grid-item">
+                        <h3>Kernel Layer</h3>
+                        <ul class="bullet-points">
+                            <li>Core services</li>
+                            <li>Resource management</li>
+                            <li>Hardware abstraction</li>
+                        </ul>
+                    </div>
+                    <div class="grid-item">
+                        <h3>Hardware Layer</h3>
+                        <ul class="bullet-points">
+                            <li>CPU</li>
+                            <li>Memory</li>
+                            <li>I/O Devices</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="key-concept">
+                    <h3>System Calls</h3>
+                    <p>Common types of system calls:</p>
+                    <ul class="bullet-points">
+                        <li>Process Control
+                            <ul class="sub-points">
+                                <li>create_process()</li>
+                                <li>terminate_process()</li>
+                                <li>wait(), signal()</li>
+                            </ul>
+                        </li>
+                        <li>File Management
+                            <ul class="sub-points">
+                                <li>open(), close()</li>
+                                <li>read(), write()</li>
+                                <li>create(), delete()</li>
+                            </ul>
+                        </li>
+                        <li>Device Management
+                            <ul class="sub-points">
+                                <li>request_device()</li>
+                                <li>release_device()</li>
+                                <li>read_device(), write_device()</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+                <h2>Memory Management Techniques</h2>
+                <div class="grid-container">
+                    <div class="grid-item">
+                        <h3>Fixed Partitioning</h3>
+                        <ul class="bullet-points">
+                            <li>Memory divided into fixed sizes</li>
+                            <li>Simple implementation</li>
+                            <li>Internal fragmentation</li>
+                            <li>Limited flexibility</li>
+                        </ul>
+                    </div>
+                    <div class="grid-item">
+                        <h3>Dynamic Partitioning</h3>
+                        <ul class="bullet-points">
+                            <li>Variable partition sizes</li>
+                            <li>Better memory utilization</li>
+                            <li>External fragmentation</li>
+                            <li>More complex management</li>
+                        </ul>
+                    </div>
+                    <div class="grid-item">
+                        <h3>Paging</h3>
+                        <ul class="bullet-points">
+                            <li>Fixed-size pages</li>
+                            <li>No external fragmentation</li>
+                            <li>Page table overhead</li>
+                            <li>Hardware support needed</li>
+                        </ul>
+                    </div>
+                    <div class="grid-item">
+                        <h3>Segmentation</h3>
+                        <ul class="bullet-points">
+                            <li>Variable-size segments</li>
+                            <li>Logical division</li>
+                            <li>Protection and sharing</li>
+                            <li>External fragmentation possible</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="practical-example">
+                    <h3>Virtual Memory Example:</h3>
+                    <p>When you run a large program on a computer with limited RAM:</p>
+                    <ol class="bullet-points">
+                        <li>Program is divided into pages</li>
+                        <li>Frequently used pages stay in RAM</li>
+                        <li>Less used pages stored on disk</li>
+                        <li>Pages swapped as needed</li>
+                    </ol>
+                </div>
+
+                <div class="interactive-demo">
+                    <h3>Process States:</h3>
+                    <ul class="bullet-points">
+                        <li>New: Process is being created</li>
+                        <li>Ready: Waiting to be assigned to processor</li>
+                        <li>Running: Instructions are being executed</li>
+                        <li>Waiting: Waiting for some event to occur</li>
+                        <li>Terminated: Process has finished execution</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3: Process Management -->
+        <div class="slide">
+            <div class="slide-content">
+                <h1>Process Management and Control</h1>
+
+                <h2>Process Management Fundamentals</h2>
+                <div class="grid-container">
+                    <div class="grid-item">
+                        <h3>Process Components</h3>
+                        <ul class="bullet-points">
+                            <li>Program Counter
+                                <ul class="sub-points">
+                                    <li>Tracks next instruction to execute</li>
+                                    <li>Essential for program flow control</li>
+                                    <li>Updated after each instruction</li>
+                                </ul>
+                            </li>
+                            <li>Process Stack
+                                <ul class="sub-points">
+                                    <li>Contains temporary data</li>
+                                    <li>Function parameters</li>
+                                    <li>Return addresses</li>
+                                    <li>Local variables</li>
+                                </ul>
+                            </li>
+                            <li>Data Section
+                                <ul class="sub-points">
+                                    <li>Global variables</li>
+                                    <li>Static variables</li>
+                                    <li>Constants</li>
+                                </ul>
+                            </li>
+                            <li>Heap
+                                <ul class="sub-points">
+                                    <li>Dynamic memory allocation</li>
+                                    <li>Runtime memory management</li>
+                                    <li>Managed by programmer</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="grid-item">
+                        <h3>Process Control Block (PCB)</h3>
+                        <ul class="bullet-points">
+                            <li>Process ID (PID)
+                                <ul class="sub-points">
+                                    <li>Unique identifier</li>
+                                    <li>Used for process tracking</li>
+                                </ul>
+                            </li>
+                            <li>Process State Information
+                                <ul class="sub-points">
+                                    <li>New: Just created</li>
+                                    <li>Ready: Waiting for CPU</li>
+                                    <li>Running: Currently executing</li>
+                                    <li>Waiting: Blocked for I/O</li>
+                                    <li>Terminated: Execution complete</li>
+                                </ul>
+                            </li>
+                            <li>CPU Registers
+                                <ul class="sub-points">
+                                    <li>Accumulator</li>
+                                    <li>Index registers</li>
+                                    <li>Stack pointers</li>
+                                    <li>General-purpose registers</li>
+                                </ul>
+                            </li>
+                            <li>Scheduling Information
+                                <ul class="sub-points">
+                                    <li>Priority level</li>
+                                    <li>Scheduling queue pointers</li>
+                                    <li>CPU burst time</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="practical-example">
+                    <h3>Process Scheduling Algorithms in Detail:</h3>
+                    <div class="grid-container">
+                        <div class="grid-item">
+                            <h4>First-Come, First-Served (FCFS)</h4>
+                            <ul class="bullet-points">
+                                <li>Simplest scheduling algorithm</li>
+                                <li>Non-preemptive</li>
+                                <li>Example:
+                                    <div class="code-example">
+                                        Process Burst Time
+                                        P1 24ms
+                                        P2 3ms
+                                        P3 3ms
+
+                                        Average waiting time = (0 + 24 + 27)/3 = 17ms
+                                    </div>
+                                </li>
+                                <li>Disadvantage: Convoy effect</li>
+                            </ul>
+                        </div>
+                        <div class="grid-item">
+                            <h4>Shortest Job First (SJF)</h4>
+                            <ul class="bullet-points">
+                                <li>Optimal for minimizing average waiting time</li>
+                                <li>Can be preemptive or non-preemptive</li>
+                                <li>Example:
+                                    <div class="code-example">
+                                        Process Burst Time
+                                        P1 6ms
+                                        P2 8ms
+                                        P3 3ms
+
+                                        Execution order: P3, P1, P2
+                                    </div>
+                                </li>
+                                <li>Challenge: Predicting burst time</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="grid-container">
+                        <div class="grid-item">
+                            <h4>Priority Scheduling</h4>
+                            <ul class="bullet-points">
+                                <li>Each process assigned a priority</li>
+                                <li>Higher priority processes run first</li>
+                                <li>Can lead to starvation</li>
+                                <li>Solution: Aging mechanism</li>
+                            </ul>
+                        </div>
+                        <div class="grid-item">
+                            <h4>Round Robin</h4>
+                            <ul class="bullet-points">
+                                <li>Time quantum based</li>
+                                <li>Fair allocation of CPU</li>
+                                <li>Example:
+                                    <div class="code-example">
+                                        Time Quantum = 4ms
+                                        Process Burst Time
+                                        P1 20ms
+                                        P2 12ms
+
+                                        Cycles: P1→P2→P1→P2→P1→P2→P1
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="key-concept">
+                    <h3>Context Switching</h3>
+                    <ul class="bullet-points">
+                        <li>Definition: Process of saving and loading process state</li>
+                        <li>Components saved:
+                            <ul class="sub-points">
+                                <li>CPU registers</li>
+                                <li>Memory maps</li>
+                                <li>I/O states</li>
+                            </ul>
+                        </li>
+                        <li>Overhead considerations:
+                            <ul class="sub-points">
+                                <li>Cache invalidation</li>
+                                <li>Memory pipeline flush</li>
+                                <li>Kernel mode transition</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: File Systems and Storage -->
+        <div class="slide">
+            <div class="slide-content">
+                <h1>File Systems and Storage Management</h1>
+
+                <div class="grid-container">
+                    <div class="grid-item">
+                        <h3>File System Types in Detail</h3>
+                        <ul class="bullet-points">
+                            <li>FAT32
+                                <ul class="sub-points">
+                                    <li>Max file size: 4GB</li>
+                                    <li>Simple structure</li>
+                                    <li>Wide compatibility</li>
+                                    <li>No built-in security</li>
+                                </ul>
+                            </li>
+                            <li>NTFS
+                                <ul class="sub-points">
+                                    <li>File-level security</li>
+                                    <li>Compression support</li>
+                                    <li>Journaling</li>
+                                    <li>Large file support</li>
+                                </ul>
+                            </li>
+                            <li>ext4
+                                <ul class="sub-points">
+                                    <li>Linux standard</li>
+                                    <li>Improved performance</li>
+                                    <li>Extended attributes</li>
+                                    <li>Online defragmentation</li>
+                                </ul>
+                            </li>
+                            <li>HFS+
+                                <ul class="sub-points">
+                                    <li>MacOS optimized</li>
+                                    <li>Unicode support</li>
+                                    <li>Built-in journaling</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="grid-item">
+                        <h3>File Operations and Attributes</h3>
+                        <ul class="bullet-points">
+                            <li>Create/Delete
+                                <ul class="sub-points">
+                                    <li>Space allocation</li>
+                                    <li>Directory entry creation</li>
+                                    <li>Permission setting</li>
+                                </ul>
+                            </li>
+                            <li>Open/Close
+                                <ul class="sub-points">
+                                    <li>File handle management</li>
+                                    <li>Access verification</li>
+                                    <li>Resource tracking</li>
+                                </ul>
+                            </li>
+                            <li>Read/Write
+                                <ul class="sub-points">
+                                    <li>Buffer management</li>
+                                    <li>Block translation</li>
+                                    <li>Synchronization</li>
+                                </ul>
+                            </li>
+                            <li>Seek
+                                <ul class="sub-points">
+                                    <li>Position tracking</li>
+                                    <li>Offset calculation</li>
+                                    <li>Boundary checking</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="key-concept">
+                    <h3>Storage Management Techniques</h3>
+                    <div class="grid-container">
+                        <div class="grid-item">
+                            <h4>Contiguous Allocation</h4>
+                            <ul class="bullet-points">
+                                <li>Sequential blocks</li>
+                                <li>Fast access</li>
+                                <li>External fragmentation</li>
+                                <li>Size limitations</li>
+                            </ul>
+                        </div>
+                        <div class="grid-item">
+                            <h4>Linked Allocation</h4>
+                            <ul class="bullet-points">
+                                <li>Pointer-based structure</li>
+                                <li>No external fragmentation</li>
+                                <li>Sequential access only</li>
+                                <li>Reliability concerns</li>
+                            </ul>
+                        </div>
+                        <div class="grid-item">
+                            <h4>Indexed Allocation</h4>
+                            <ul class="bullet-points">
+                                <li>Index block based</li>
+                                <li>Direct access support</li>
+                                <li>Space overhead</li>
+                                <li>Complex implementation</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="practical-example">
+                    <h3>File System Implementation Example:</h3>
+                    <div class="code-example">
+                        Directory Entry Structure:
+
+                        struct dir_entry {
+                        char filename[256]; // File name
+                        int inode_number; // File reference
+                        char file_type; // Regular/Directory/Link
+                        long file_size; // Size in bytes
+                        time_t modified_time; // Last modification
+                        mode_t permissions; // Access rights
+                        };
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: Device Management -->
+        <div class="slide">
+            <div class="slide-content">
+                <h1>Device Management and Drivers</h1>
+
+                <h2>Device Driver Architecture</h2>
+                <div class="grid-container">
+                    <div class="grid-item">
+                        <h3>Character Devices</h3>
+                        <ul class="bullet-points">
+                            <li>Keyboards
+                                <ul class="sub-points">
+                                    <li>Interrupt-driven I/O</li>
+                                    <li>Scan code translation</li>
+                                    <li>Buffer management</li>
+                                    <li>Event handling</li>
+                                </ul>
+                            </li>
+                            <li>Mice
+                                <ul class="sub-points">
+                                    <li>Position tracking</li>
+                                    <li>DPI settings</li>
+                                    <li>Button mapping</li>
+                                    <li>Acceleration control</li>
+                                </ul>
+                            </li>
+                            <li>Serial Ports
+                                <ul class="sub-points">
+                                    <li>Baud rate control</li>
+                                    <li>Flow control</li>
+                                    <li>Error checking</li>
+                                    <li>Buffer management</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="grid-item">
+                        <h3>Block Devices</h3>
+                        <ul class="bullet-points">
+                            <li>Hard Drives
+                                <ul class="sub-points">
+                                    <li>Sector addressing</li>
+                                    <li>DMA operations</li>
+                                    <li>Cache management</li>
+                                    <li>SMART monitoring</li>
+                                </ul>
+                            </li>
+                            <li>SSDs
+                                <ul class="sub-points">
+                                    <li>Wear leveling</li>
+                                    <li>Garbage collection</li>
+                                    <li>TRIM support</li>
+                                    <li>Over-provisioning</li>
+                                </ul>
+                            </li>
+                            <li>USB Drives
+                                <ul class="sub-points">
+                                    <li>Hot-plugging</li>
+                                    <li>Power management</li>
+                                    <li>Protocol handling</li>
+                                    <li>Error recovery</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="key-concept">
+                    <h3>Device Driver Layers</h3>
+                    <div class="grid-container">
+                        <div class="grid-item">
+                            <h4>User Space</h4>
+                            <ul class="bullet-points">
+                                <li>Device APIs</li>
+                                <li>User applications</li>
+                                <li>Configuration tools</li>
+                                <li>Device utilities</li>
+                            </ul>
+                        </div>
+                        <div class="grid-item">
+                            <h4>Kernel Space</h4>
+                            <ul class="bullet-points">
+                                <li>Character device interface</li>
+                                <li>Block device interface</li>
+                                <li>Network device interface</li>
+                                <li>Device class drivers</li>
+                            </ul>
+                        </div>
+                        <div class="grid-item">
+                            <h4>Hardware Layer</h4>
+                            <ul class="bullet-points">
+                                <li>Hardware registers</li>
+                                <li>Interrupt handlers</li>
+                                <li>DMA controllers</li>
+                                <li>Physical interfaces</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="practical-example">
+                    <h3>Device Driver Implementation Example:</h3>
+                    <div class="code-example">
+                        // Basic Character Device Driver Structure
+                        struct char_device_driver {
+                        int major_number;
+                        int minor_number;
+                        struct cdev cdev;
+
+                        // File operations
+                        struct file_operations fops = {
+                        .owner = THIS_MODULE,
+                        .open = device_open,
+                        .release = device_release,
+                        .read = device_read,
+                        .write = device_write,
+                        };
+                        };
+                    </div>
+                </div>
+
+                <div class="warning-box">
+                    <h3>Common Device Management Issues and Solutions:</h3>
+                    <ul class="bullet-points">
+                        <li>Device Conflicts
+                            <ul class="sub-points">
+                                <li>IRQ assignment conflicts</li>
+                                <li>Memory address overlaps</li>
+                                <li>Port conflicts</li>
+                                <li>Solution: Plug and Play</li>
+                            </ul>
+                        </li>
+                        <li>Resource Allocation
+                            <ul class="sub-points">
+                                <li>Memory management</li>
+                                <li>DMA channel allocation</li>
+                                <li>Power management</li>
+                                <li>Solution: Resource tracking</li>
+                            </ul>
+                        </li>
+                        <li>Driver Compatibility
+                            <ul class="sub-points">
+                                <li>Version mismatches</li>
+                                <li>API changes</li>
+                                <li>Hardware variations</li>
+                                <li>Solution: Driver verification</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 6: Security and Protection -->
+        <div class="slide">
+            <div class="slide-content">
+                <h1>Security and Protection Mechanisms</h1>
+
+                <div class="grid-container">
+                    <div class="grid-item">
+                        <h3>Access Control Systems</h3>
+                        <ul class="bullet-points">
+                            <li>User Authentication
+                                <ul class="sub-points">
+                                    <li>Password systems</li>
+                                    <li>Biometric verification</li>
+                                    <li>Two-factor authentication</li>
+                                    <li>Single sign-on systems</li>
+                                </ul>
+                            </li>
+                            <li>File Permissions
+                                <ul class="sub-points">
+                                    <li>UNIX-style permissions</li>
+                                    <li>ACL (Access Control Lists)</li>
+                                    <li>Role-based access</li>
+                                    <li>Mandatory access control</li>
+                                </ul>
+                            </li>
+                            <li>Process Isolation
+                                <ul class="sub-points">
+                                    <li>Memory protection</li>
+                                    <li>Sandboxing</li>
+                                    <li>Container isolation</li>
+                                    <li>Virtual machine isolation</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="grid-item">
+                        <h3>Security Measures</h3>
+                        <ul class="bullet-points">
+                            <li>Encryption
+                                <ul class="sub-points">
+                                    <li>File system encryption</li>
+                                    <li>Network encryption</li>
+                                    <li>Memory encryption</li>
+                                    <li>Key management</li>
+                                </ul>
+                            </li>
+                            <li>Firewalls
+                                <ul class="sub-points">
+                                    <li>Packet filtering</li>
+                                    <li>Application layer filtering</li>
+                                    <li>Stateful inspection</li>
+                                    <li>Network segmentation</li>
+                                </ul>
+                            </li>
+                            <li>Antivirus
+                                <ul class="sub-points">
+                                    <li>Real-time scanning</li>
+                                    <li>Signature detection</li>
+                                    <li>Heuristic analysis</li>
+                                    <li>Behavioral monitoring</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="practical-example">
+                    <h3>Security Implementation Examples:</h3>
+                    <div class="code-example">
+                        // UNIX File Permission Implementation
+                        struct permission {
+                        mode_t user_perms; // Owner permissions
+                        mode_t group_perms; // Group permissions
+                        mode_t other_perms; // Other permissions
+
+                        // Permission bits
+                        #define READ 4
+                        #define WRITE 2
+                        #define EXECUTE 1
+                        };
+
+                        // Access Control List Entry
+                        struct acl_entry {
+                        uid_t user_id;
+                        gid_t group_id;
+                        mode_t permissions;
+                        int inheritance_flags;
+                        };
+                    </div>
+                </div>
+
+                <div class="key-concept">
+                    <h3>Security Best Practices in Detail:</h3>
+                    <div class="grid-container">
+                        <div class="grid-item">
+                            <h4>Regular Updates</h4>
+                            <ul class="bullet-points">
+                                <li>Security patches</li>
+                                <li>System updates</li>
+                                <li>Driver updates</li>
+                                <li>Firmware updates</li>
+                            </ul>
+                        </div>
+                        <div class="grid-item">
+                            <h4>Password Policies</h4>
+                            <ul class="bullet-points">
+                                <li>Minimum length requirements</li>
+                                <li>Complexity rules</li>
+                                <li>Expiration policies</li>
+                                <li>History enforcement</li>
+                            </ul>
+                        </div>
+                        <div class="grid-item">
+                            <h4>Backup Strategies</h4>
+                            <ul class="bullet-points">
+                                <li>Incremental backups</li>
+                                <li>Full system images</li>
+                                <li>Off-site storage</li>
+                                <li>Recovery testing</li>
+                            </ul>
+                        </div>
+                        <div class="grid-item">
+                            <h4>Access Logging</h4>
+                            <ul class="bullet-points">
+                                <li>System events</li>
+                                <li>Security incidents</li>
+                                <li>User activities</li>
+                                <li>Resource usage</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7: Modern Operating System Features -->
+        <div class="slide">
+            <div class="slide-content">
+                <h1>Modern Operating System Features and Technologies</h1>
+
+                <div class="grid-container">
+                    <div class="grid-item">
+                        <h3>Cloud Integration Features</h3>
+                        <ul class="bullet-points">
+                            <li>Storage Synchronization
+                                <ul class="sub-points">
+                                    <li>Real-time file syncing</li>
+                                    <li>Version control</li>
+                                    <li>Conflict resolution</li>
+                                    <li>Bandwidth optimization</li>
+                                </ul>
+                            </li>
+                            <li>Remote Access
+                                <ul class="sub-points">
+                                    <li>Secure shell protocols</li>
+                                    <li>Remote desktop services</li>
+                                    <li>VPN integration</li>
+                                    <li>Multi-device support</li>
+                                </ul>
+                            </li>
+                            <li>Automated Backup
+                                <ul class="sub-points">
+                                    <li>Incremental backups</li>
+                                    <li>Scheduled synchronization</li>
+                                    <li>Delta compression</li>
+                                    <li>Recovery points</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="grid-item">
+                        <h3>Virtualization Technologies</h3>
+                        <ul class="bullet-points">
+                            <li>Virtual Machines
+                                <ul class="sub-points">
+                                    <li>Hardware virtualization</li>
+                                    <li>Snapshot management</li>
+                                    <li>Live migration</li>
+                                    <li>Resource allocation</li>
+                                </ul>
+                            </li>
+                            <li>Containers
+                                <ul class="sub-points">
+                                    <li>Docker integration</li>
+                                    <li>Kubernetes support</li>
+                                    <li>Microservices architecture</li>
+                                    <li>Container orchestration</li>
+                                </ul>
+                            </li>
+                            <li>Resource Isolation
+                                <ul class="sub-points">
+                                    <li>CPU pinning</li>
+                                    <li>Memory limits</li>
+                                    <li>Network segregation</li>
+                                    <li>Storage quotas</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="key-concept">
+                    <h3>Advanced OS Features</h3>
+                    <div class="grid-container">
+                        <div class="grid-item">
+                            <h4>AI Integration</h4>
+                            <ul class="bullet-points">
+                                <li>Predictive computing</li>
+                                <li>Voice recognition</li>
+                                <li>Smart resource management</li>
+                                <li>Automated troubleshooting</li>
+                            </ul>
+                        </div>
+                        <div class="grid-item">
+                            <h4>IoT Support</h4>
+                            <ul class="bullet-points">
+                                <li>Device discovery</li>
+                                <li>Protocol compatibility</li>
+                                <li>Sensor integration</li>
+                                <li>Data aggregation</li>
+                            </ul>
+                        </div>
+                        <div class="grid-item">
+                            <h4>Edge Computing</h4>
+                            <ul class="bullet-points">
+                                <li>Local processing</li>
+                                <li>Reduced latency</li>
+                                <li>Offline capabilities</li>
+                                <li>Data preprocessing</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="practical-example">
+                    <h3>Modern OS Implementation Example:</h3>
+                    <div class="code-example">
+                        // Cloud Storage Integration
+                        class CloudStorageManager {
+                        async syncFile(localPath, cloudPath) {
+                        // Check file changes
+                        const changes = await detectChanges(localPath);
+
+                        if (changes) {
+                        // Compress and encrypt
+                        const processedData = await prepareForSync(changes);
+
+                        // Upload with retry mechanism
+                        await uploadToCloud(processedData, cloudPath);
+
+                        // Update local metadata
+                        await updateSyncStatus(localPath);
+                        }
+                        }
+                        }
+                    </div>
+                </div>
+
+                <div class="warning-box">
+                    <h3>Modern OS Challenges:</h3>
+                    <ul class="bullet-points">
+                        <li>Security Concerns
+                            <ul class="sub-points">
+                                <li>Data privacy in cloud storage</li>
+                                <li>Virtual machine escape vulnerabilities</li>
+                                <li>Container security risks</li>
+                            </ul>
+                        </li>
+                        <li>Performance Impact
+                            <ul class="sub-points">
+                                <li>Virtualization overhead</li>
+                                <li>Network bandwidth limitations</li>
+                                <li>Resource contention</li>
+                            </ul>
+                        </li>
+                        <li>Compatibility Issues
+                            <ul class="sub-points">
+                                <li>Legacy system integration</li>
+                                <li>API versioning</li>
+                                <li>Hardware support</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 8: Networking and Distributed Systems -->
+        <div class="slide">
+            <div class="slide-content">
+                <h1>Networking and Distributed Systems Architecture</h1>
+
+                <div class="grid-container">
+                    <div class="grid-item">
+                        <h3>Network Protocol Stack</h3>
+                        <ul class="bullet-points">
+                            <li>Application Layer
+                                <ul class="sub-points">
+                                    <li>HTTP/HTTPS protocols</li>
+                                    <li>FTP/SFTP services</li>
+                                    <li>DNS resolution</li>
+                                    <li>SMTP/IMAP email</li>
+                                </ul>
+                            </li>
+                            <li>Transport Layer
+                                <ul class="sub-points">
+                                    <li>TCP reliability</li>
+                                    <li>UDP speed</li>
+                                    <li>Port management</li>
+                                    <li>Flow control</li>
+                                </ul>
+                            </li>
+                            <li>Network Layer
+                                <ul class="sub-points">
+                                    <li>IP routing</li>
+                                    <li>Packet forwarding</li>
+                                    <li>QoS support</li>
+                                    <li>ICMP messaging</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="grid-item">
+                        <h3>Distributed System Features</h3>
+                        <ul class="bullet-points">
+                            <li>Load Balancing
+                                <ul class="sub-points">
+                                    <li>Round-robin distribution</li>
+                                    <li>Dynamic scaling</li>
+                                    <li>Health monitoring</li>
+                                    <li>Failover support</li>
+                                </ul>
+                            </li>
+                            <li>Fault Tolerance
+                                <ul class="sub-points">
+                                    <li>Redundancy management</li>
+                                    <li>Error detection</li>
+                                    <li>Automatic recovery</li>
+                                    <li>Data replication</li>
+                                </ul>
+                            </li>
+                            <li>Resource Sharing
+                                <ul class="sub-points">
+                                    <li>Distributed file systems</li>
+                                    <li>Shared memory</li>
+                                    <li>Process migration</li>
+                                    <li>Load distribution</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="key-concept">
+                    <h3>Network Architectures</h3>
+                    <div class="grid-container">
+                        <div class="grid-item">
+                            <h4>Client-Server Model</h4>
+                            <ul class="bullet-points">
+                                <li>Centralized control</li>
+                                <li>Easy maintenance</li>
+                                <li>Scalable architecture</li>
+                                <li>Resource management</li>
+                            </ul>
+                        </div>
+                        <div class="grid-item">
+                            <h4>Peer-to-Peer (P2P)</h4>
+                            <ul class="bullet-points">
+                                <li>Decentralized structure</li>
+                                <li>Direct communication</li>
+                                <li>Resource sharing</li>
+                                <li>Network resilience</li>
+                            </ul>
+                        </div>
+                        <div class="grid-item">
+                            <h4>Hybrid Systems</h4>
+                            <ul class="bullet-points">
+                                <li>Combined benefits</li>
+                                <li>Flexible deployment</li>
+                                <li>Optimized performance</li>
+                                <li>Adaptive architecture</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="practical-example">
+                    <h3>Distributed System Implementation:</h3>
+                    <div class="code-example">
+                        // Load Balancer Implementation
+                        class LoadBalancer {
+                        constructor(servers) {
+                        this.servers = servers;
+                        this.currentIndex = 0;
+                        }
+
+                        // Round-robin selection
+                        getNextServer() {
+                        const server = this.servers[this.currentIndex];
+                        this.currentIndex = (this.currentIndex + 1) % this.servers.length;
+                        return server;
+                        }
+
+                        // Health check
+                        async checkServerHealth(server) {
+                        try {
+                        const response = await ping(server);
+                        return response.status === 'healthy';
+                        } catch (error) {
+                        return false;
+                        }
+                        }
+                        }
+                    </div>
+                </div>
+
+                <div class="note-box">
+                    <h3>Network Security Considerations:</h3>
+                    <ul class="bullet-points">
+                        <li>Protocol Security
+                            <ul class="sub-points">
+                                <li>Encryption standards</li>
+                                <li>Authentication methods</li>
+                                <li>Integrity checks</li>
+                            </ul>
+                        </li>
+                        <li>Access Control
+                            <ul class="sub-points">
+                                <li>Firewall rules</li>
+                                <li>Network segmentation</li>
+                                <li>VPN tunneling</li>
+                            </ul>
+                        </li>
+                        <li>Monitoring
+                            <ul class="sub-points">
+                                <li>Traffic analysis</li>
+                                <li>Intrusion detection</li>
+                                <li>Performance metrics</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="warning-box">
+                    <h3>Common Networking Challenges:</h3>
+                    <ul class="bullet-points">
+                        <li>Scalability Issues
+                            <ul class="sub-points">
+                                <li>Bandwidth limitations</li>
+                                <li>Connection bottlenecks</li>
+                                <li>Resource constraints</li>
+                            </ul>
+                        </li>
+                        <li>Security Threats
+                            <ul class="sub-points">
+                                <li>DDoS attacks</li>
+                                <li>Man-in-the-middle</li>
+                                <li>Data breaches</li>
+                            </ul>
+                        </li>
+                        <li>Performance
+                            <ul class="sub-points">
+                                <li>Latency issues</li>
+                                <li>Network congestion</li>
+                                <li>Protocol overhead</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- More slides will follow in Part 2 -->
+
+        <div class="navigation">
+            <button class="nav-btn" onclick="prevSlide()">Previous</button>
+            <button class="nav-btn" onclick="nextSlide()">Next</button>
+            <div class="progress-dots" id="progress-dots"></div>
+        </div>
+    </div>
+
+    <script>
+        let slideIndex = 1;
+        const slides = document.getElementsByClassName("slide");
+        const progressDots = document.getElementById("progress-dots");
+
+        // Create progress dots
+        for (let i = 0; i < slides.length; i++) {
+            const dot = document.createElement("span");
+            dot.className = "dot";
+            dot.onclick = function () {
+                showSlide(i + 1);
+            };
+            progressDots.appendChild(dot);
+        }
+
+        function showSlide(n) {
+            if (n > slides.length) {
+                slideIndex = 1;
+            }
+            if (n < 1) {
+                slideIndex = slides.length;
+            }
+
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+
+            const dots = document.getElementsByClassName("dot");
+            for (let i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" active-dot", "");
+            }
+
+            slides[slideIndex - 1].style.display = "block";
+            dots[slideIndex - 1].className += " active-dot";
+
+            // Scroll to the top of the page
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+
+        function nextSlide() {
+            showSlide(slideIndex += 1);
+        }
+
+        function prevSlide() {
+            showSlide(slideIndex -= 1);
+        }
+
+        // Show first slide initially
+        showSlide(1);
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function (event) {
+            if (event.key === "ArrowLeft") {
+                prevSlide();
+            } else if (event.key === "ArrowRight") {
+                nextSlide();
+            }
+        });
+    </script>
+
+</body>
+
+</html>
